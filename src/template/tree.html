@@ -1,0 +1,20 @@
+{% var tree = o.tree, thisTpl = o.thisTpl; %}
+<div class="files-tree">
+  <ul>
+    {% tree.forEach(function(subTree) { %}
+      <li>
+        <a data-obj-id="{%=subTree.id%}" class="{%print(subTree.type == 1? 'file' : 'folder');%}">
+          {% if(subTree.type == 2){ %}
+              <i class="icon-folder-empty"></i><i class="icon-folder-open-empty"></i>
+          {% } else { %}
+              <i class="icon-doc-text"></i>
+          {% } %}
+          <span>{%=subTree.name%}</span>
+        </a>
+        {% if (subTree.children && subTree.children.length>0) { %}
+          {%#thisTpl({tree: subTree.children, thisTpl: thisTpl})%}
+        {% } %}
+      </li>
+    {% }); %}
+  </ul>
+</div>

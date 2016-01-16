@@ -1,0 +1,14 @@
+{% var obj = o; %}
+<li>
+  <a data-obj-id="{%=obj.id%}" class="{%print(obj.type == 1? 'file' : 'folder');%}">
+    {% if(obj.type == 2){ %}
+        <i class="icon-folder-empty"></i><i class="icon-folder-open-empty"></i>
+    {% } else { %}
+        <i class="icon-doc-text"></i>
+    {% } %}
+    <span>{%=obj.name%}</span>
+  </a>
+  {% if ( obj.type == 2) { %}
+      <div class="files-tree"><ul></ul></div>
+  {% } %}
+</li>

@@ -1,0 +1,21 @@
+<div>
+    <form>
+    <div class="modal-content">
+      <label>
+        {% if(o.id) { %}
+          Rename
+        {% } else { %}
+          Name
+        {% } %}
+        <input type="hidden" name="id" value="{%= o.id %}" />
+        <input type="hidden" name="parent" value="{%= o.parent %}" />
+        <input type="hidden" name="type" value="{%= o.type %}" />
+        <input type="text" name="name" value="{%= o.name %}" autofocus required />
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="btn cancel" type="button">Cancel</button>
+      <button class="btn btn-danger js-do" type="submit">OK</button>
+    </div>
+    </form>
+</div>
