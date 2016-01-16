@@ -131,13 +131,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      openFile: function openFile(id) {
 	        var adapter = this.adapter;
 	        var isOpened = adapter.state.openedIds.indexOf(id) > -1;
-	        adapter.openObj(id, (function (err, obj) {
-	          if (!isOpened) {
+	        if (!isOpened) {
+	          adapter.openObj(id, (function (err, obj) {
 	            this.filesContent.emit('openFile', obj);
-	          }
-	          this.filesContent.emit('activeFile', id);
-	          this.filesNav.emit('activeFile', id);
-	        }).bind(this));
+	            this.filesContent.emit('activeFile', id);
+	            this.filesNav.emit('activeFile', id);
+	          }).bind(this));
+	        } else {
+	          adapter.activeObj(id, (function (err, obj) {
+	            this.filesContent.emit('activeFile', id);
+	            this.filesNav.emit('activeFile', id);
+	          }).bind(this));
+	        }
 	      },
 	      closeFile: function closeFile(id) {
 	        this.adapter.closeObj(id, (function (err, obj) {
